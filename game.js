@@ -41,8 +41,8 @@ function round(){
     ++t;
     if(t>15){
         alert("You: "+String(a[d])+" Opponent: "+String(a[d2]));
-        if(sc>sc2||((sc==sc2)&&b[d]>b[d2]))end(1);
-        else if(sc<sc2||((sc==sc2)&&b[d]<b[d2]))end(0);
+        if(sc>sc2||((sc==sc2)&&a[d]>a[d2]))end(1);
+        else if(sc<sc2||((sc==sc2)&&a[d]<a[d2]))end(0);
         else end(2);
         return;
     }
