@@ -9,6 +9,9 @@ function ran(){
     return s1;
 }
 function init(){
+    document.querySelector('#hp0 .g').style.width='240px', document.querySelector('#hp0 .r').style.width='0px';
+    document.querySelector('#hp1 .g').style.width='240px', document.querySelector('#hp1 .r').style.width='0px';
+    document.querySelector('#hp2 .g').style.width='240px', document.querySelector('#hp2 .r').style.width='0px';
     play.innerHTML="<input id='s1' placeholder='seed 1'>　<input id='s2' placeholder='seed 2'>　<button onclick='start()'>Start</button>";
 }
 function start(){
@@ -27,7 +30,9 @@ function start(){
     }
     a.push(0);
     c=-1;
-    play.innerHTML="<div class='card'><button onclick='fst(1)'>先手</button>　　<button onclick='fst(0)'>後手</button></div>";
+    var k='';
+    for(var i=0; i<4; ++i)k+=String.fromCharCode(parseInt('A', 36)+ran()%26+55);
+    play.innerHTML="key: "+k+"<br><br><div class='card'><button onclick='fst(1)'>先手</button>　　<button onclick='fst(0)'>後手</button></div>";
 }
 var d, d2, df, df2, t, sc, sc2;
 function fst(x){c=x, d=1-c, d2=c, df=0, df2=0, sc=3, sc2=3, t=1; round();}
@@ -41,6 +46,7 @@ function round(){
         else end(2);
         return;
     }
+    document.querySelector('#hp0 .g').style.width=String(15*(15-t))+'px', document.querySelector('#hp0 .r').style.width=String(15*(t+1))+'px';
     play.innerHTML=String(15-t)+" cards left<br><br>";
     if(c==1){
         df=0;
@@ -55,7 +61,7 @@ function round(){
             if(i==4)s+='<br><br>';
             else if(i<8)s+=' ';
         }
-        play.innerHTML=s+"</div>";
+        play.innerHTML+=s+"</div>";
     }
     c=1-c;
 }
@@ -136,8 +142,8 @@ function g1(x){
     round();
 }
 function hp(x){
-    if(x==1)--sc2, alert('Opponent: --hp');
-    else --sc, alert('You : --hp');
+    if(x==1)--sc2, alert('Opponent: --hp'), document.querySelector('#hp2 .g').style.width=String(sc2*80)+'px', document.querySelector('#hp2 .r').style.width=String(240-sc2*80)+'px';
+    else --sc, alert('You : --hp'), document.querySelector('#hp1 .g').style.width=String(sc*80)+'px', document.querySelector('#hp1 .r').style.width=String(240-sc*80)+'px';
     if(sc==0)end(0);
     if(sc2==0)end(1);
 }
@@ -145,5 +151,5 @@ function end(x){
     if(x==1)play.innerHTML='You win!';
     else if(x==0)play.innerHTML='You lose!';
     else play.innerHTML='Tie';
-    play.innerHTML+="<br><br><button onclick='init()'>Play Again</button>"
+    play.innerHTML+="<br><br><button onclick='init()'>Play Again</button>";
 }

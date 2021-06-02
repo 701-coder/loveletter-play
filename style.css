@@ -6,7 +6,7 @@ body{
 h1{
     font-size: 72px;
 }
-#play{
+#play, #hp{
     font-size: 36px;
 }
 input, button{
@@ -30,4 +30,29 @@ input{
     width: 62px;
     height: 100px;
     font-size: 36px;
+}
+#hp0{
+    width: 240px;
+    position: relative;
+    left: 50%;
+    margin-left: -120px;
+}
+#hp1{
+    float: right;
+}
+#hp2{
+    float: left;
+}
+#hp .g{
+    float: left;
+    height: 10px;
+    width: 240px;
+    background-color: green;
+}
+#hp .r{
+    float: right;
+    height: 10px;
+    width: 0px;
+    background-color: red;
+    border-width: 10px;
 }
