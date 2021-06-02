@@ -32,6 +32,7 @@ function start(){
 var d, d2, df, df2, t, sc, sc2;
 function fst(x){c=x, d=1-c, d2=c, df=0, df2=0, sc=3, sc2=3, t=1; round();}
 function round(){
+    if(sc==0||sc2==0)return;
     ++t;
     if(t>15){
         alert("You: "+String(a[d])+" Opponent: "+String(a[d2]));
@@ -62,7 +63,7 @@ function f(x){
     if(x!=a[t])d=t;
     if(df2==0){
         if(x==1){
-            var s="<div class='guess'>";
+            var s="<div class='card'>";
             for(var i=2; i<9; ++i){
                 s+="<button onclick='f1("+String(i)+")'>"+String(i)+"</button>";
                 if(i==5)s+='<br><br>';
@@ -80,7 +81,7 @@ function f(x){
         }
         else if(x==4)df=1, round();
         else if(x==5){
-            if(a[d2]==8)end(1);
+            if(a[d2]==8)hp(1);
             alert("It's "+String(a[d2])), d2=++t;
             round();
         }
@@ -102,7 +103,7 @@ function g(x){
     if(x!=a[t])d2=t;
     if(df==0){
         if(x==1){
-            var s="<div class='guess'>";
+            var s="<div class='card'>";
             for(var i=2; i<9; ++i){
                 s+="<button onclick='g1("+String(i)+")'>"+String(i)+"</button>";
                 if(i==5)s+='<br><br>';
@@ -116,7 +117,7 @@ function g(x){
             else alert('tie');
             round();
         }
-        else if(x==4)df2=1;
+        else if(x==4)df2=1, round();
         else if(x==5){
             if(a[d]==8)hp(0);
             d=++t, round();
